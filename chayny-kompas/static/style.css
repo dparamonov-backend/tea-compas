@@ -1,0 +1,136 @@
+:root {
+  --bg: #130b07;
+  --panel: #21130d;
+  --panel-soft: #2a1a11;
+  --gold: #d6ad72;
+  --gold-light: #f2d7a8;
+  --cream: #f2e6d3;
+  --muted: #bca891;
+  --line: rgba(214, 173, 114, .35);
+  --serif: Georgia, "Times New Roman", serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+body { margin: 0; background: var(--bg); color: var(--cream); font-family: var(--serif); line-height: 1.6; }
+a { color: inherit; text-decoration: none; }
+.site-header { min-height: 76px; padding: 12px clamp(18px, 5vw, 76px); display: flex; align-items: center; justify-content: space-between; gap: 24px; background: rgba(15, 8, 5, .96); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; backdrop-filter: blur(12px); }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-mark { color: var(--gold); font-size: 34px; line-height: 1; }
+.brand strong { display: block; font-size: clamp(18px, 2vw, 25px); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+.brand small { display: block; font-size: 9px; letter-spacing: .22em; color: var(--gold); }
+.nav { display: flex; align-items: center; gap: clamp(14px, 2.5vw, 32px); font-size: 14px; color: #ddc9ad; }
+.nav a { transition: color .2s; }
+.nav a:hover, .text-link:hover { color: var(--gold-light); }
+.nav-cta { border: 1px solid var(--gold); padding: 8px 15px; color: var(--gold-light); }
+.menu-toggle { display: none; background: none; color: var(--gold); border: 1px solid var(--line); padding: 7px 10px; font-size: 20px; }
+.hero { min-height: 590px; display: grid; place-items: center; text-align: center; position: relative; overflow: hidden; background: linear-gradient(90deg, rgba(15,7,3,.72), rgba(15,7,3,.35), rgba(15,7,3,.78)), url("images/menu-ceremonies.png") center 20% / cover no-repeat; border-bottom: 1px solid var(--line); }
+.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 0%, rgba(10,5,2,.42) 70%); }
+.hero-content { position: relative; padding: 72px 20px; max-width: 850px; }
+.eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .22em; font-size: 11px; margin: 0 0 14px; }
+.hero h1 { margin: 0; font-size: clamp(46px, 8vw, 100px); line-height: 1.05; font-weight: 400; letter-spacing: .04em; text-shadow: 0 4px 24px #000; }
+.hero-subtitle { margin: 18px 0 30px; font-size: clamp(16px, 2vw, 23px); letter-spacing: .28em; text-transform: uppercase; color: var(--gold-light); }
+.button { display: inline-flex; justify-content: center; align-items: center; gap: 20px; border: 0; padding: 13px 22px; font: inherit; cursor: pointer; transition: transform .2s, background .2s; }
+.button:hover { transform: translateY(-2px); }
+.button-gold { color: #24140b; background: linear-gradient(135deg, #f2d7a8, #c29354); box-shadow: 0 6px 24px rgba(0,0,0,.25); }
+.hero-note { position: absolute; bottom: 22px; color: #d6c2a7; font-size: 12px; letter-spacing: .12em; }
+.section { max-width: 1240px; margin: 0 auto; padding: 82px 26px; }
+.section-heading { text-align: center; margin: 0 auto 36px; max-width: 700px; }
+.section-heading h2, .booking-intro h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 400; line-height: 1.15; margin: 0 0 12px; }
+.section-heading > p:last-child { color: var(--muted); margin: 0; }
+.ceremony-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.ceremony-card { background: linear-gradient(145deg, rgba(54,33,21,.95), rgba(25,14,9,.98)); border: 1px solid var(--line); outline: 1px solid rgba(214,173,114,.1); outline-offset: -7px; padding: 32px 25px 27px; text-align: center; position: relative; }
+.ceremony-card::before, .ceremony-card::after { content: "✦"; color: var(--gold); position: absolute; font-size: 12px; top: 13px; }
+.ceremony-card::before { left: 16px; } .ceremony-card::after { right: 16px; }
+.ceremony-card.featured { background: linear-gradient(145deg, #3a2415, #1d1009); }
+.card-number { font-size: 11px; color: var(--gold); letter-spacing: .18em; }
+.ceremony-card h3 { font-size: 24px; font-weight: 400; margin: 8px 0 15px; }
+.price { font-size: 24px; color: #2a170a; background: linear-gradient(100deg, #e4c18c, #f6dfb5, #d4a568); padding: 7px 4px 3px; margin: 0; }
+.price span { font-size: 13px; }
+.price-sub { margin: 0 0 18px; background: rgba(0,0,0,.2); padding: 3px; color: var(--gold-light); font-size: 13px; }
+.tea-list { color: #e4d0b6; font-size: 14px; min-height: 82px; }
+.card-description { color: var(--muted); font-size: 14px; min-height: 48px; }
+.text-link { display: inline-block; color: var(--gold); border-bottom: 1px solid var(--line); margin-top: 12px; padding-bottom: 4px; font-size: 13px; }
+.menu-image-wrap { margin: 48px auto 0; max-width: 780px; text-align: center; }
+.menu-image-wrap figcaption { color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: .18em; margin-bottom: 14px; }
+.menu-image { display: block; width: 100%; height: auto; border: 1px solid var(--line); box-shadow: 0 16px 45px #0008; }
+.tasting-section { padding-top: 42px; }
+.tasting-panel { display: grid; grid-template-columns: .85fr 1.15fr; border: 1px solid var(--line); background: linear-gradient(115deg, #2a1a11, #170d08); }
+.tasting-art { min-height: 280px; position: relative; overflow: hidden; display: grid; place-items: center; background: radial-gradient(ellipse at 50% 80%, #684023 0, #2b190e 38%, #1a0f09 75%); }
+.tasting-art::before, .tasting-art::after { content: ""; position: absolute; width: 190px; height: 90px; border: 1px solid rgba(214,173,114,.35); border-radius: 50%; transform: rotate(-25deg); }
+.tasting-art::after { transform: rotate(35deg); width: 250px; height: 125px; }
+.tea-bowl { position: absolute; bottom: 65px; width: 150px; height: 65px; border-radius: 10% 10% 48% 48%; background: linear-gradient(#b8793e, #4a2816); border: 2px solid #d1a36b; box-shadow: 0 18px 25px #0008; }
+.tea-bowl::before { content: ""; position: absolute; width: 150px; height: 23px; top: -9px; left: -2px; border-radius: 50%; background: #15100a; border: 2px solid #d1a36b; }
+.tea-seal { position: absolute; top: 25px; left: 25px; color: var(--gold); border: 1px solid var(--line); padding: 8px; font-size: 22px; }
+.tea-leaves { position: absolute; bottom: 87px; z-index: 1; color: #a6a15b; font-size: 25px; }
+.steam { position: absolute; bottom: 130px; width: 18px; height: 70px; border-left: 2px solid #c9b9a2; border-radius: 50%; opacity: .5; }
+.steam-one { transform: rotate(15deg); left: 47%; } .steam-two { transform: rotate(-18deg); left: 55%; height: 55px; }
+.tasting-copy { padding: clamp(26px, 5vw, 58px); align-self: center; }
+.tasting-copy > p:first-child { font-size: clamp(20px, 2.4vw, 29px); line-height: 1.45; margin-top: 0; }
+.notice { background: linear-gradient(100deg, #d5a666, #f2d7a8); color: #29170b; text-align: center; padding: 12px; font-weight: bold; }
+.muted, .source-note { color: var(--muted); font-size: 13px; }
+.extras-section { padding-top: 35px; }
+.extras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.extra-card { display: flex; align-items: center; gap: 15px; padding: 20px; border: 1px solid var(--line); background: var(--panel); }
+.extra-icon { font-size: 30px; color: var(--gold); }
+.extra-card h3 { font-size: 17px; font-weight: 400; margin: 0; }
+.extra-card p { color: var(--muted); font-size: 12px; margin: 2px 0 0; }
+.extra-card strong { color: var(--gold-light); margin-left: auto; white-space: nowrap; font-size: 15px; }
+.menu-footnote { color: var(--muted); text-align: center; font-size: 12px; margin-top: 24px; }
+.story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.story-card { border-top: 1px solid var(--gold); padding: 24px; background: linear-gradient(150deg, #25170f, #170d08); }
+.story-kicker { color: var(--gold); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
+.story-card h3 { font-size: 22px; font-weight: 400; margin: 10px 0; }
+.story-card p { color: var(--muted); font-size: 14px; margin-bottom: 0; }
+.source-note { text-align: center; margin-top: 24px; }
+.booking-section { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(30px, 7vw, 90px); background: linear-gradient(120deg, #24160e, #170d08); border: 1px solid var(--line); margin-bottom: 70px; }
+.booking-intro > p:not(.eyebrow) { color: var(--muted); }
+.contact-details { margin-top: 34px; color: var(--gold-light); }
+.contact-details span { color: var(--gold); margin-right: 9px; }
+.booking-form { display: flex; flex-direction: column; gap: 15px; }
+.booking-form label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #dfc9aa; }
+input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: 0; background: #120a06; color: var(--cream); padding: 12px; font: inherit; font-size: 14px; }
+input:focus, select:focus, textarea:focus { outline: 1px solid var(--gold); border-color: var(--gold); }
+input::placeholder, textarea::placeholder { color: #8c7966; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.submit-button { width: 100%; }
+.form-disclaimer { color: #9e8a75; font-size: 11px; }
+.flash { padding: 12px; font-size: 13px; border: 1px solid var(--line); }
+.flash.success { color: #d4e6bb; } .flash.error { color: #f0b6a8; }
+.site-footer { border-top: 1px solid var(--line); padding: 30px clamp(20px, 5vw, 76px); display: flex; justify-content: space-between; align-items: center; gap: 20px; color: var(--muted); font-size: 12px; }
+.footer-brand { color: var(--gold-light); font-size: 19px; }
+.footer-brand span { color: var(--gold); }
+.site-footer p { text-align: center; }
+.back-top { color: var(--gold); white-space: nowrap; }
+@media (max-width: 850px) {
+  .nav { gap: 13px; font-size: 12px; }
+  .brand strong { letter-spacing: .03em; }
+  .ceremony-grid { grid-template-columns: 1fr; max-width: 570px; margin: auto; }
+  .tea-list, .card-description { min-height: 0; }
+  .tasting-panel, .booking-section { grid-template-columns: 1fr; }
+  .tasting-art { min-height: 230px; }
+  .booking-section { margin: 0 16px 45px; }
+}
+@media (max-width: 620px) {
+  .site-header { min-height: 68px; }
+  .brand-mark { font-size: 27px; }
+  .brand strong { font-size: 16px; }
+  .brand small { font-size: 7px; letter-spacing: .13em; }
+  .menu-toggle { display: block; }
+  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #170d08; padding: 18px 22px 22px; border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; font-size: 15px; }
+  .nav.open { display: flex; }
+  .nav a { padding: 8px 0; }
+  .nav .nav-cta { text-align: center; padding: 10px; }
+  .hero { min-height: 460px; background-position: center; }
+  .hero h1 { font-size: 47px; }
+  .hero-note { max-width: 90%; font-size: 10px; }
+  .section { padding: 60px 18px; }
+  .menu-image-wrap { margin-top: 32px; }
+  .extras-grid, .story-grid { grid-template-columns: 1fr; }
+  .extra-card { padding: 16px 12px; gap: 10px; }
+  .extra-card h3 { font-size: 15px; }
+  .extra-card strong { font-size: 13px; }
+  .form-row { grid-template-columns: 1fr; }
+  .booking-section { padding: 28px 20px; }
+  .site-footer { flex-direction: column; text-align: center; gap: 8px; }
+  .site-footer p { margin: 0; }
+}
