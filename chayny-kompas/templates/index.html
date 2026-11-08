@@ -1,197 +1,68 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#170d08">
-  <meta name="description" content="Чайный компас — чайные церемонии, сорта чая и чайная посуда.">
-  <title>Чайный компас — меню чайных церемоний</title>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#062d25"><meta name="description" content="Чайный компас — пространство чайных церемоний, вкусов и традиций.">
+  <title>Чайный компас — чайные церемонии</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#top" aria-label="Чайный компас — главная">
-      <span class="brand-mark">☯</span>
-      <span><strong>Чайный компас</strong><small>МЕНЮ ЧАЙНЫХ ЦЕРЕМОНИЙ</small></span>
-    </a>
-    <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
-    <nav class="nav">
-      <a href="#menu">Церемонии</a>
-      <a href="#tea">О чае</a>
-      <a href="#accessories">Посуда и чай</a>
-      <a href="#booking" class="nav-cta">Записаться</a>
-    </nav>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <p class="eyebrow">Тишина. Вкус. Традиция.</p>
-        <h1>Чайный компас</h1>
-        <p class="hero-subtitle">Больше, чем чай</p>
-        <a class="button button-gold" href="#menu">Открыть меню <span>↓</span></a>
-      </div>
-      <div class="hero-note">Чайная культура · неспешные встречи · новые вкусы</div>
-    </section>
-
-    <section class="section menu-section" id="menu">
-      <div class="section-heading">
-        <p class="eyebrow">Выберите своё путешествие</p>
-        <h2>Чайные церемонии</h2>
-        <p>Меню церемоний из предоставленных материалов.</p>
-      </div>
-
-      <div class="ceremony-grid">
-        <article class="ceremony-card">
-          <div class="card-number">01</div>
-          <h3>Знакомство с пуэрами</h3>
-          <p class="price">4 800 ₽ <span>/ 2 участника</span></p>
-          <p class="price-sub">2 400 ₽ с человека</p>
-          <p class="tea-list">Дикий пуэр · Дворцовый пуэр · Чэнь Нянь · Молочный пуэр · Вишнёвый шу · Черничный шу</p>
-          <p class="card-description">Классические и вкусоароматические пуэры в одном чайном путешествии.</p>
-          <a class="text-link" href="#booking" data-ceremony="Знакомство с пуэрами">Выбрать церемонию ↗</a>
-        </article>
-
-        <article class="ceremony-card featured">
-          <div class="card-number">02</div>
-          <h3>Искусство улунов</h3>
-          <p class="price">5 800 ₽ <span>/ 2 участника</span></p>
-          <p class="price-sub">2 900 ₽ с человека</p>
-          <p class="tea-list">Те Гуань Инь · Да Хун Пао · Дун Дин · Молочный улун · Женьшень улун</p>
-          <p class="card-description">От нежных цветочных до насыщенных обжаренных улунов.</p>
-          <a class="text-link" href="#booking" data-ceremony="Искусство улунов">Выбрать церемонию ↗</a>
-        </article>
-
-        <article class="ceremony-card">
-          <div class="card-number">03</div>
-          <h3>Чайная экзотика</h3>
-          <p class="price">7 800 ₽ <span>/ 2 участника</span></p>
-          <p class="price-sub">3 900 ₽ с человека</p>
-          <p class="tea-list">ГАБА Али Шань · Анчан · Красные иглы · Бай Хао</p>
-          <p class="card-description">Необычные вкусы, эффектная подача и яркие чайные впечатления.</p>
-          <a class="text-link" href="#booking" data-ceremony="Чайная экзотика">Выбрать церемонию ↗</a>
-        </article>
-      </div>
-
-      <figure class="menu-image-wrap">
-        <figcaption>Меню из Telegram-канала</figcaption>
-        <a href="{{ url_for('static', filename='images/menu-ceremonies.png') }}" target="_blank" rel="noopener">
-          <img class="menu-image" src="{{ url_for('static', filename='images/menu-ceremonies.png') }}" alt="Оригинальное меню чайных церемоний «Чайный компас»">
-        </a>
-      </figure>
-    </section>
-
-    <section class="section tasting-section" id="tea">
-      <div class="section-heading">
-        <p class="eyebrow">Погружение во вкус</p>
-        <h2>Прессованный пуэр</h2>
-      </div>
-      <div class="tasting-panel">
-        <div class="tasting-art" role="img" aria-label="Иллюстрация чайных листьев и пиалы">
-          <span class="tea-seal">茶</span>
-          <span class="steam steam-one"></span><span class="steam steam-two"></span>
-          <div class="tea-bowl"></div>
-          <div class="tea-leaves">✦</div>
-        </div>
-        <div class="tasting-copy">
-          <p>Любой прессованный блин пуэра можно приобрести в нашей чайной и сразу продегустировать вместе с чайным мастером.</p>
-          <div class="notice">✦ При покупке дегустация бесплатна ✦</div>
-          <p class="muted">Подробности и ассортимент уточняйте у чайного мастера.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section extras-section" id="accessories">
-      <div class="section-heading">
-        <p class="eyebrow">Для полного чаепития</p>
-        <h2>Дополнительно</h2>
-      </div>
-      <div class="extras-grid">
-        <article class="extra-card">
-          <div class="extra-icon">🍃</div>
-          <div><h3>Дополнительные сорта чая</h3><p>К церемонии</p></div>
-          <strong>от 490 ₽</strong>
-        </article>
-        <article class="extra-card">
-          <div class="extra-icon">♨</div>
-          <div><h3>Электронный кальян</h3><p>В зависимости от сорта табака</p></div>
-          <strong>от 1 800 ₽</strong>
-        </article>
-      </div>
-      <p class="menu-footnote">Состав и наличие уточняйте при бронировании.</p>
-    </section>
-
-    <section class="section source-content">
-      <div class="section-heading">
-        <p class="eyebrow">Из публикаций канала</p>
-        <h2>Чай — это целый мир</h2>
-      </div>
-      <div class="story-grid">
-        <article class="story-card">
-          <span class="story-kicker">Заваривание</span>
-          <h3>Как заварить чай проливом</h3>
-          <p>В предоставленном материале описаны посуда, температура воды и короткие проливы для раскрытия аромата чая.</p>
-        </article>
-        <article class="story-card">
-          <span class="story-kicker">Знакомство с сортами</span>
-          <h3>Те Гуань Инь</h3>
-          <p>В публикации канала описаны цветочный и травянистый профиль, сладость и особенности раскрытия чая в нескольких проливах.</p>
-        </article>
-        <article class="story-card">
-          <span class="story-kicker">Чайная посуда</span>
-          <h3>Чайник «Лунь Дань»</h3>
-          <p>Керамический чайник объёмом 150 мл; полный объём, указанный в публикации, — 185 мл.</p>
-        </article>
-      </div>
-      <p class="source-note">Тексты на этой странице основаны на предоставленных материалах канала. Наличие товаров и актуальные условия лучше уточнять перед визитом.</p>
-    </section>
-
-    <section class="section booking-section" id="booking">
-      <div class="booking-intro">
-        <p class="eyebrow">Ваше чайное путешествие начинается здесь</p>
-        <h2>Запись на церемонию</h2>
-        <p>Оставьте заявку — данные сохранятся в базе сайта. Отправка заявки сама по себе не подтверждает бронь.</p>
-        <div class="contact-details">
-          <p><span>⌖</span> ул. Манчестерская 2, корпус 2</p>
-          <p><span>◷</span> Ежедневно с 9:00 до 23:00</p>
-        </div>
-      </div>
-      <form class="booking-form" action="{{ url_for('booking') }}" method="post">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for category, message in messages %}
-              <div class="flash {{ category }}">{{ message }}</div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-        <label>Ваше имя <input name="name" required maxlength="100" placeholder="Как к вам обращаться"></label>
-        <label>Контакт для связи <input name="contact" required maxlength="150" placeholder="Телефон или Telegram"></label>
-        <label>Церемония
-          <select name="ceremony" required>
-            <option value="">Выберите церемонию</option>
-            <option>Знакомство с пуэрами</option>
-            <option>Искусство улунов</option>
-            <option>Чайная экзотика</option>
-            <option>Другое — уточнить у мастера</option>
-          </select>
-        </label>
-        <div class="form-row">
-          <label>Количество гостей <select name="guests" required><option value="">Гостей</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></label>
-          <label>Желаемая дата <input type="date" name="preferred_date" required></label>
-        </div>
-        <label>Комментарий <textarea name="comment" rows="3" maxlength="1000" placeholder="Пожелания, если есть"></textarea></label>
-        <button class="button button-gold submit-button" type="submit">Отправить заявку <span>↗</span></button>
-        <small class="form-disclaimer">Пожалуйста, не указывайте платёжные данные. Для подтверждения бронирования дождитесь ответа.</small>
-      </form>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <a class="footer-brand" href="#top">Чайный компас <span>☯</span></a>
-    <p>Это атмосфера, вкус и новое знакомство с чайной культурой.</p>
-    <a href="#top" class="back-top">Наверх ↑</a>
-  </footer>
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
-</html>
+<header class="header" id="top">
+  <a class="brand" href="#top"><span class="brand-symbol">茶</span><span><b>Чайный компас</b><small>ПРОСТРАНСТВО ЧАЙНОЙ КУЛЬТУРЫ</small></span></a>
+  <button class="nav-toggle" aria-label="Открыть навигацию" aria-expanded="false">☰</button>
+  <nav class="nav"><a href="#philosophy">Философия</a><a href="#menu">Меню</a><a href="#details">Впечатления</a><a class="nav-book" href="#booking">Записаться <span>↗</span></a></nav>
+</header>
+<main>
+<section class="hero">
+  <div class="hero-grain"></div><div class="hero-content">
+    <p class="eyebrow"><i></i> МЕСТО, ГДЕ ВРЕМЯ ЗАМЕДЛЯЕТСЯ</p>
+    <h1>Искусство<br><em>быть</em> в моменте</h1>
+    <p class="hero-lead">Почувствуйте глубину чайного вкуса, откройте новые состояния и подарите себе время для настоящего.</p>
+    <div class="hero-actions"><button class="btn btn-gold" data-open-menu>Открыть меню <span>↗</span></button><a class="text-cta" href="#philosophy">Открыть для себя <span>↓</span></a></div>
+  </div>
+  <div class="hero-side-note">ЧАЙНЫЕ ЦЕРЕМОНИИ <b>·</b> САНКТ-ПЕТЕРБУРГ</div>
+  <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+  <div class="hero-stamp"><span>茶</span><small>ПУТЕШЕСТВИЕ<br>ВНУТРЬ СЕБЯ</small></div>
+</section>
+<section class="intro section" id="philosophy">
+  <div class="section-label">01 / ФИЛОСОФИЯ</div><div class="intro-copy"><p class="overline">НЕ ПРОСТО ЧАЕПИТИЕ</p><h2>У каждого чая<br>есть <em>своя история.</em></h2><p>Мы приглашаем вас не торопиться. Прислушаться к аромату, заметить оттенки вкуса и разделить момент с теми, кто рядом. Здесь чай становится маленьким путешествием.</p><button class="inline-link" data-open-menu>Выбрать церемонию <span>↗</span></button></div>
+  <div class="intro-aside"><div class="ring-art"><span>茶</span></div><p>Лист за листом.<br>Пролив за проливом.<br><em>Момент за моментом.</em></p></div>
+</section>
+<section class="menu-section section" id="menu">
+  <div class="section-label">02 / ВАШЕ ПУТЕШЕСТВИЕ</div>
+  <div class="section-head"><div><p class="overline">КОЛЛЕКЦИЯ ВКУСОВ</p><h2>Меню <em>церемоний</em></h2></div><p>Девять страниц авторского меню — изучите каждую, чтобы найти своё чайное настроение.</p></div>
+  <button class="menu-preview" data-open-menu aria-label="Открыть меню и листать страницы">
+    <div class="preview-image"><img src="{{ url_for('static', filename='images/menu/page-01.webp') }}" alt="Первая страница чайного меню"><span class="preview-open">ОТКРЫТЬ МЕНЮ <b>↗</b></span></div>
+    <div class="preview-caption"><span>ЧАЙНЫЙ КОМПАС / МЕНЮ</span><span>9 СТРАНИЦ <b>→</b></span></div>
+  </button>
+  <div class="menu-hint"><span class="hint-icon">↔</span> Листайте страницы меню внутри просмотрщика — на телефоне можно провести пальцем.</div>
+</section>
+<section class="details section" id="details">
+  <div class="section-label">03 / ЧАЙНЫЙ РИТУАЛ</div><div class="details-grid">
+    <div><p class="overline">ВНИМАНИЕ К ДЕТАЛЯМ</p><h2>Вкус раскрывается<br><em>не спеша.</em></h2></div>
+    <div class="detail-card"><span class="detail-number">A</span><h3>Чай и открытия</h3><p>Знакомьтесь с разными сортами, сравнивайте ароматы и находите вкусы, к которым захочется вернуться.</p></div>
+    <div class="detail-card"><span class="detail-number">B</span><h3>Посуда и атмосфера</h3><p>Чайные плитки и чайники также доступны в нашей чайной. Стоимость и наличие уточняйте у администратора.</p></div>
+  </div>
+</section>
+<section class="booking section" id="booking">
+  <div class="section-label">04 / ВСТРЕЧА</div><div class="booking-layout"><div class="booking-copy"><p class="overline">ВАШЕ ЧАЙНОЕ ПУТЕШЕСТВИЕ</p><h2>Оставьте суету<br><em>за дверью.</em></h2><p>Оставьте заявку, и мы свяжемся с вами, чтобы обсудить детали и подтвердить удобное время.</p><div class="contact-lines"><p><span>⌖</span> Санкт-Петербург, ул. Манчестерская 2, корпус 2</p><p><span>◷</span> Ежедневно · 9:00–23:00</p></div></div>
+  <form class="booking-form" action="{{ url_for('booking') }}" method="post">
+    {% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endif %}{% endwith %}
+    <div class="form-row"><label>Ваше имя<input name="name" required maxlength="100" placeholder="Как к вам обращаться"></label><label>Контакт для связи<input name="contact" required maxlength="150" placeholder="Телефон или Telegram"></label></div>
+    <label>Желаемая церемония<select name="ceremony" required><option value="">Выберите из меню</option><option>Знакомство с пуэрами</option><option>Изумрудный путь</option><option>Искусство улунов</option><option>Золото китайского красного чая</option><option>Чайная экзотика</option><option>Ароматы чёрного чая</option><option>Мир ройбоса</option><option>Шесть сокровищ Поднебесной</option><option>Изящный мир белых и жёлтых чаёв</option><option>Другое — уточнить у мастера</option></select></label>
+    <div class="form-row"><label>Количество гостей<select name="guests" required><option value="">Гостей</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></label><label>Желаемая дата<input type="date" name="preferred_date" required></label></div>
+    <label>Комментарий<textarea name="comment" rows="3" maxlength="1000" placeholder="Пожелания, если есть"></textarea></label>
+    <button class="btn btn-gold submit" type="submit">Отправить заявку <span>↗</span></button><small class="form-note">Отправка заявки не является подтверждением бронирования. Мы свяжемся с вами отдельно.</small>
+  </form></div>
+</section>
+</main>
+<footer class="footer"><a class="brand footer-brand" href="#top"><span class="brand-symbol">茶</span><span><b>Чайный компас</b><small>ПРОСТРАНСТВО ЧАЙНОЙ КУЛЬТУРЫ</small></span></a><p>Тишина. Вкус. Традиция.</p><a href="#top" class="to-top">НАВЕРХ ↑</a></footer>
+<div class="viewer" id="menuViewer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Просмотр чайного меню">
+  <div class="viewer-top"><div><span class="viewer-kicker">ЧАЙНЫЙ КОМПАС</span><strong>Меню церемоний</strong></div><div class="viewer-count"><span id="pageCurrent">01</span> <i>/</i> 09</div><button class="viewer-close" aria-label="Закрыть меню">×</button></div>
+  <div class="viewer-stage"><button class="viewer-arrow prev" aria-label="Предыдущая страница">‹</button><div class="viewer-page"><img id="menuPage" src="{{ url_for('static', filename='images/menu/page-01.webp') }}" alt="Страница 1 меню" draggable="false"></div><button class="viewer-arrow next" aria-label="Следующая страница">›</button></div>
+  <div class="viewer-bottom"><span>ЛИСТАЙТЕ МЕНЮ</span><div class="page-dots" id="pageDots">{% for n in range(1,10) %}<button class="page-dot{% if n == 1 %} active{% endif %}" data-page="{{ n-1 }}" aria-label="Страница {{ n }}"></button>{% endfor %}</div><span class="viewer-tip">← →</span></div>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body></html>

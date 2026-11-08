@@ -1,31 +1,11 @@
-const menuToggle = document.querySelector(".menu-toggle");
-const nav = document.querySelector(".nav");
-
-if (menuToggle && nav) {
-  menuToggle.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-  });
-
-  nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("open");
-      menuToggle.setAttribute("aria-expanded", "false");
-    });
-  });
-}
-
-document.querySelectorAll("[data-ceremony]").forEach((link) => {
-  link.addEventListener("click", () => {
-    const select = document.querySelector('select[name="ceremony"]');
-    if (select) select.value = link.dataset.ceremony;
-  });
-});
-
-const dateInput = document.querySelector('input[name="preferred_date"]');
-if (dateInput) {
-  const today = new Date();
-  const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
-    .toISOString().slice(0, 10);
-  dateInput.min = localToday;
-}
+const navToggle=document.querySelector('.nav-toggle'),nav=document.querySelector('.nav');
+if(navToggle&&nav){navToggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');navToggle.setAttribute('aria-expanded',String(open));});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');navToggle.setAttribute('aria-expanded','false');}));}
+const viewer=document.getElementById('menuViewer'),pageImg=document.getElementById('menuPage'),current=document.getElementById('pageCurrent'),dots=[...document.querySelectorAll('.page-dot')];
+const pages=Array.from({length:9},(_,i)=>`/static/images/menu/page-${String(i+1).padStart(2,'0')}.webp`);let page=0, touchX=0;
+function showPage(n){page=(n+pages.length)%pages.length;pageImg.src=pages[page];pageImg.alt=`Страница ${page+1} меню чайных церемоний`;current.textContent=String(page+1).padStart(2,'0');dots.forEach((d,i)=>d.classList.toggle('active',i===page));}
+function openViewer(){viewer.classList.add('open');viewer.setAttribute('aria-hidden','false');document.body.classList.add('viewer-open');showPage(page);document.querySelector('.viewer-close').focus();}
+function closeViewer(){viewer.classList.remove('open');viewer.setAttribute('aria-hidden','true');document.body.classList.remove('viewer-open');}
+document.querySelectorAll('[data-open-menu]').forEach(b=>b.addEventListener('click',openViewer));document.querySelector('.viewer-close').addEventListener('click',closeViewer);document.querySelector('.viewer-arrow.prev').addEventListener('click',()=>showPage(page-1));document.querySelector('.viewer-arrow.next').addEventListener('click',()=>showPage(page+1));dots.forEach(d=>d.addEventListener('click',()=>showPage(Number(d.dataset.page))));
+viewer.addEventListener('click',e=>{if(e.target===viewer)closeViewer();});document.addEventListener('keydown',e=>{if(!viewer.classList.contains('open'))return;if(e.key==='Escape')closeViewer();if(e.key==='ArrowLeft')showPage(page-1);if(e.key==='ArrowRight')showPage(page+1);});
+const stage=document.querySelector('.viewer-stage');stage.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].screenX;},{passive:true});stage.addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-touchX;if(Math.abs(dx)>45)showPage(page+(dx<0?1:-1));},{passive:true});
+const dateInput=document.querySelector('input[name="preferred_date"]');if(dateInput){const now=new Date();dateInput.min=new Date(now-now.getTimezoneOffset()*60000).toISOString().slice(0,10);}

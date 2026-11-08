@@ -1,13 +1,46 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import sqlite3
+import os
+import json
+import urllib.request
+import urllib.error
 from pathlib import Path
 from datetime import datetime
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent
 DATABASE = BASE_DIR / "bookings.db"
+load_dotenv(BASE_DIR / ".env")
 
 app = Flask(__name__)
-app.secret_key = "change-this-secret-before-deployment"
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "dev-only-change-before-deployment")
+
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
+TELEGRAM_ADMIN_ID = os.getenv("TELEGRAM_ADMIN_ID", "").strip()
+
+
+def send_telegram_notification(text):
+    """Send a booking notification to the admin, if Telegram is configured."""
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_ADMIN_ID:
+        return False, "Telegram не настроен: добавьте токен и ID администратора в .env."
+
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    payload = json.dumps({
+        "chat_id": TELEGRAM_ADMIN_ID,
+        "text": text,
+        "disable_web_page_preview": True,
+    }).encode("utf-8")
+    req = urllib.request.Request(
+        url, data=payload, headers={"Content-Type": "application/json"}, method="POST"
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as response:
+            result = json.loads(response.read().decode("utf-8"))
+        if result.get("ok"):
+            return True, None
+        return False, result.get("description", "Telegram API вернул ошибку.")
+    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
+        return False, str(exc)
 
 
 def get_db():
@@ -59,7 +92,22 @@ def booking():
              datetime.now().isoformat(timespec="seconds"))
         )
 
-    flash("Заявка сохранена. Для подтверждения времени свяжитесь с чайным мастером.", "success")
+    notification = (
+        "🍵 Новая заявка на чайную церемонию\\n\\n"
+        f"Имя: {name}\\n"
+        f"Контакт: {contact}\\n"
+        f"Церемония: {ceremony}\\n"
+        f"Количество гостей: {guests}\\n"
+        f"Желаемая дата: {preferred_date}\\n"
+        f"Комментарий: {comment or 'не указан'}\\n\\n"
+        "Заявка сохранена в базе сайта. Бронирование ещё не подтверждено."
+    )
+    sent, send_error = send_telegram_notification(notification)
+    if sent:
+        flash("Заявка сохранена и отправлена администратору в Telegram. Бронирование будет подтверждено отдельно.", "success")
+    else:
+        app.logger.warning("Telegram booking notification failed: %s", send_error)
+        flash("Заявка сохранена в базе сайта, но уведомление в Telegram не отправилось. Проверьте настройки бота.", "error")
     return redirect(url_for("index") + "#booking")
 
 
