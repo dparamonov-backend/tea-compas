@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#170a10">
+  <meta name="description" content="Чайный компас — чайные церемонии, меню блюд и бронь через Telegram в Санкт-Петербурге.">
+  <title>Чайный компас — чайные церемонии в Санкт-Петербурге</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+{% macro art(name) -%}
+{%- if name == 'matcha' -%}
+<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M38 100h124c0 38-26 62-62 62s-62-24-62-62z"/><path d="M70 168h60"/><path d="M52 100c10-12 86-12 96 0"/><path d="M60 108c20 8 60 8 80 0" opacity=".5"/><g opacity=".8"><path d="M150 60l18-22M158 66l22-12M146 52l10-26"/><path d="M143 66c10 4 20 2 24-8"/></g><path d="M80 70c-8-10 8-14 0-26M100 74c-8-10 8-14 0-30M120 70c-8-10 8-14 0-26" opacity=".7"/></svg>
+{%- elif name == 'sakura' -%}
+<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 176c40-30 62-62 80-92" opacity=".7"/><g transform="translate(112 78)"><path d="M0-10c-16-18-6-40 0-44 6 4 16 26 0 44z"/><path d="M0-10c-16-18-6-40 0-44 6 4 16 26 0 44z" transform="rotate(72)"/><path d="M0-10c-16-18-6-40 0-44 6 4 16 26 0 44z" transform="rotate(144)"/><path d="M0-10c-16-18-6-40 0-44 6 4 16 26 0 44z" transform="rotate(216)"/><path d="M0-10c-16-18-6-40 0-44 6 4 16 26 0 44z" transform="rotate(288)"/><circle r="5"/><path d="M0 0l0-22M0 0l21-7M0 0l13 18M0 0l-13 18M0 0l-21-7" opacity=".6"/></g><g transform="translate(52 128) scale(.5)"><path d="M0-10c-16-18-6-40 0-44 6 4 16 26 0 44z"/><path d="M0-10c-16-18-6-40 0-44 6 4 16 26 0 44z" transform="rotate(72)"/><path d="M0-10c-16-18-6-40 0-44 6 4 16 26 0 44z" transform="rotate(144)"/><path d="M0-10c-16-18-6-40 0-44 6 4 16 26 0 44z" transform="rotate(216)"/><path d="M0-10c-16-18-6-40 0-44 6 4 16 26 0 44z" transform="rotate(288)"/></g><path d="M150 140c6 4 10 10 10 16M168 118c6 2 10 6 12 12" opacity=".6"/></svg>
+{%- elif name == 'duo' -%}
+<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M26 104h66c0 28-14 46-33 46s-33-18-33-46z"/><path d="M92 114c14-2 14 18 0 18"/><path d="M16 158h86"/><path d="M110 104h66c0 28-14 46-33 46s-33-18-33-46z"/><path d="M176 114c14-2 14 18 0 18"/><path d="M100 158h86" opacity="0"/><path d="M110 158h76"/><path d="M52 90c-8-10 8-14 0-26M72 92c-8-10 8-14 0-28M136 90c-8-10 8-14 0-26M156 92c-8-10 8-14 0-28" opacity=".7"/><path d="M100 38l5 10 11 2-8 8 2 11-10-5-10 5 2-11-8-8 11-2z" opacity=".75"/></svg>
+{%- elif name == 'dessert' -%}
+<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M30 118l12 38h60l12-38z"/><path d="M30 118c0-8 84-8 84 0"/><path d="M42 118c0 0 6 8 30 8s30-8 30-8" opacity=".5"/><circle cx="50" cy="106" r="9"/><circle cx="72" cy="100" r="9"/><circle cx="94" cy="106" r="9"/><path d="M72 91c0-8 6-10 10-10" opacity=".8"/><path d="M130 112h46c0 24-10 38-23 38s-23-14-23-38z"/><path d="M176 120c12-2 12 14 0 14"/><path d="M122 158h62"/><path d="M142 98c-6-8 6-10 0-20M162 98c-6-8 6-10 0-20" opacity=".7"/></svg>
+{%- else -%}
+<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="100" cy="108" rx="40" ry="26"/><ellipse cx="100" cy="108" rx="14" ry="9" opacity=".7"/><path d="M100 99v-3" opacity="0"/><g><circle cx="100" cy="52" r="11"/><circle cx="152" cy="82" r="11"/><circle cx="152" cy="138" r="11"/><circle cx="100" cy="166" r="11"/><circle cx="48" cy="138" r="11"/><circle cx="48" cy="82" r="11"/></g><path d="M100 66v18M140 90l-16 10M140 130l-16-10M100 152v-18M60 130l16-10M60 90l16 10" opacity=".55"/></svg>
+{%- endif -%}
+{%- endmacro %}
+
+{% macro tg() -%}<svg class="tg-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.6 3.4 2.9 10.6c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.1.9.8.9.5 0 .8-.2 1.1-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8L22.5 4.6c.3-1.3-.5-1.8-1.5-1.2zM8.6 13.3l9.7-6.1c.5-.3.9-.1.5.2l-8 7.2-.3 3.4z"/></svg>{%- endmacro %}
+
+<header class="header" id="top">
+  <a class="brand" href="#top" aria-label="Чайный компас — на главную">
+    <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="24" cy="24" r="16" fill="none" stroke="currentColor" stroke-width=".8" stroke-dasharray="2 3"/><path d="M24 5l4.5 15.5L24 24l-4.5-3.5z" fill="currentColor"/><path d="M24 43l-4.5-15.5L24 24l4.5 3.5z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M5 24h38M24 5v38" stroke="currentColor" stroke-width=".6"/></svg>
+    <span><b>Чайный компас</b><small>пространство чайной культуры</small></span>
+  </a>
+  <button class="nav-toggle" aria-label="Открыть навигацию" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  <nav class="nav" id="nav">
+    <a href="#ceremonies">Церемонии</a>
+    <a href="#food">Меню блюд</a>
+    <a href="#details">Атмосфера</a>
+    <a href="#booking">Бронь</a>
+    <a class="btn btn-tg btn-sm" href="{{ telegram_url }}" target="_blank" rel="noopener">{{ tg() }} Написать в Telegram</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="petals" aria-hidden="true">{% for i in range(16) %}<i style="--x:{{ (i*37)%100 }}%;--d:{{ 9 + (i*7)%9 }}s;--s:{{ 0.6 + ((i*13)%7)/10 }};--w:{{ (i*53)%5 }}s"></i>{% endfor %}</div>
+  <svg class="lantern" viewBox="0 0 120 260" aria-hidden="true"><line x1="60" y1="0" x2="60" y2="58" stroke="#d9a94a" stroke-width="2"/><rect x="40" y="56" width="40" height="10" rx="3" fill="#d9a94a"/><ellipse cx="60" cy="116" rx="46" ry="56" fill="url(#lg)"/><path d="M60 60c-22 20-22 92 0 112M60 60c22 20 22 92 0 112M14 116h92" stroke="#7a1f14" stroke-width="1.6" fill="none" opacity=".55"/><rect x="40" y="166" width="40" height="10" rx="3" fill="#d9a94a"/><path d="M60 176v36" stroke="#d9a94a" stroke-width="3"/><path d="M50 212h20l-4 38H54z" fill="#c8402a"/><defs><radialGradient id="lg" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#ff8a4a"/><stop offset=".55" stop-color="#e0452b"/><stop offset="1" stop-color="#8a1c14"/></radialGradient></defs></svg>
+
+  <div class="hero-content">
+    <p class="eyebrow">Чайные церемонии · Санкт-Петербург</p>
+    <h1>Найдите своё чайное направление</h1>
+    <p class="hero-lead">Дегустации редких чаёв с мастером, тёплая кухня и вечера без спешки. Выберите церемонию и забронируйте её за пару минут.</p>
+    <div class="hero-actions">
+      <a class="btn btn-tg" href="{{ telegram_url }}" target="_blank" rel="noopener">{{ tg() }} Забронировать в Telegram</a>
+      <a class="btn btn-ghost" href="#ceremonies">Смотреть церемонии</a>
+    </div>
+    <ul class="hero-facts"><li><b>14</b> церемоний</li><li><b>9:00–23:00</b> каждый день</li><li><b>Манчестерская 2</b> корпус 2</li></ul>
+  </div>
+
+  <div class="compass" aria-hidden="true">
+    <svg viewBox="0 0 400 400">
+      <defs><radialGradient id="cg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3a1220"/><stop offset="1" stop-color="#1b0910"/></radialGradient></defs>
+      <circle cx="200" cy="200" r="190" fill="url(#cg)" stroke="#d9a94a" stroke-width="2"/>
+      <circle cx="200" cy="200" r="172" fill="none" stroke="#d9a94a" stroke-width=".8" opacity=".6"/>
+      <circle cx="200" cy="200" r="138" fill="none" stroke="#d9a94a" stroke-width="1" stroke-dasharray="3 7" opacity=".7"/>
+      <g class="ticks" stroke="#d9a94a">{% for i in range(72) %}<line x1="200" y1="14" x2="200" y2="{{ 28 if i % 6 == 0 else 22 }}" stroke-width="{{ 1.6 if i % 6 == 0 else 0.8 }}" transform="rotate({{ i*5 }} 200 200)"/>{% endfor %}</g>
+      <g font-family="Forum, serif" font-size="26" fill="#f1d48a" text-anchor="middle"><text x="200" y="64">С</text><text x="344" y="210">В</text><text x="200" y="352">Ю</text><text x="56" y="210">З</text></g>
+      <path d="M200 70L214 186 200 200 186 186z" fill="#e0452b" opacity=".0"/>
+      <g class="rose" fill="none" stroke="#d9a94a" stroke-width="1" opacity=".75"><path d="M200 60l22 118 118 22-118 22-22 118-22-118-118-22 118-22z"/><path d="M96 96l76 62 62 76-76-62z" opacity=".5"/><path d="M304 96l-62 76-76 62 62-76z" opacity=".5"/></g>
+      <g class="needle"><path d="M200 78L216 200 200 216 184 200z" fill="#e0452b"/><path d="M200 322L184 200 200 184 216 200z" fill="#f1d48a"/><circle cx="200" cy="200" r="9" fill="#170a10" stroke="#d9a94a" stroke-width="2"/></g>
+      <text x="200" y="262" font-family="Forum, serif" font-size="46" fill="#d9a94a" text-anchor="middle" opacity=".0">茶</text>
+    </svg>
+  </div>
+</section>
+
+<section class="section ceremonies" id="ceremonies">
+  <header class="section-head">
+    <h2>Церемонии</h2>
+    <p>Девять авторских церемоний в меню и пять новых. Нажмите на карточку, чтобы увидеть чаи, программу и цену.</p>
+  </header>
+
+  <div class="menu-feature">
+    <button class="menu-preview" data-open-menu="0" aria-label="Открыть меню церемоний и листать страницы">
+      <img src="{{ url_for('static', filename=menu_pages[0]) }}" alt="Первая страница меню церемоний: знакомство с пуэрами" loading="lazy">
+      <span class="stack s1"></span><span class="stack s2"></span>
+    </button>
+    <div class="menu-feature-copy">
+      <h3>Авторское меню церемоний</h3>
+      <p>Пуэры, улуны, красные и белые чаи, ройбос и экзотика. Листайте все страницы меню прямо на сайте: стрелками, точками или пальцем на телефоне.</p>
+      <div class="feature-actions">
+        <button class="btn btn-gold" data-open-menu="0">Открыть меню церемоний</button>
+        <button class="btn btn-ghost" data-open-menu="9">Меню блюд</button>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subhead">Новые церемонии</h3>
+  <div class="cer-grid">
+    {% for c in new_ceremonies %}
+    <article class="cer-card" tabindex="0" role="button" data-cer="{{ c.id }}" aria-label="{{ c.title }}: подробнее">
+      <div class="cer-art">{{ art(c.art) }}</div>
+      <div class="cer-body">
+        <h4>{{ c.title }}</h4>
+        <p>{{ c.tagline }}</p>
+        <ul class="cer-meta"><li>{{ c.duration }}</li><li>{{ c.guests }}</li></ul>
+      </div>
+      <div class="cer-foot"><span class="cer-price">{{ c.price }}<small> {{ c.per }}</small></span><span class="cer-more">Подробнее</span></div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section food" id="food">
+  <header class="section-head dark">
+    <h2>Меню блюд</h2>
+    <p>Салаты, паста, сэндвичи, большие тарелки к чаю и десерты. Цены в рублях.</p>
+  </header>
+  <div class="food-layout">
+    <button class="food-photo" data-open-menu="9" aria-label="Открыть меню блюд крупно">
+      <img src="{{ url_for('static', filename='images/food-menu-sm.webp') }}" alt="Меню блюд Чайного компаса с фотографиями и ценами" loading="lazy">
+      <span class="zoom">Открыть крупно</span>
+    </button>
+    <div class="food-list">
+      <section><h3>Салаты и горячее</h3><ul>
+        <li><span><b>Цезарь с курицей</b><i>Сочная курица, салат романо, томаты черри, пармезан и фирменный соус</i></span><em>850 ₽</em></li>
+        <li><span><b>Греческий салат</b><i>Свежие овощи, маслины, сыр фета и ароматные травы</i></span><em>790 ₽</em></li>
+        <li><span><b>Паста карбонара</b><i>Паста с беконом в сливочном соусе с сыром пармезан</i></span><em>980 ₽</em></li>
+        <li><span><b>Индейка со сливочным соусом и рисом басмати</b><i>Нежная индейка с шампиньонами</i></span><em>1 010 ₽</em></li>
+        <li><span><b>Карри с цыплёнком</b><i>Ароматное карри с рисом басмати</i></span><em>890 ₽</em></li>
+      </ul></section>
+      <section><h3>Сэндвичи</h3><ul>
+        <li><span><b>Сэндвич с бужениной</b><i>Булочка с бужениной, салатом и соусом</i></span><em>590 ₽</em></li>
+        <li><span><b>Сэндвич с цыплёнком</b><i>Булочка с цыплёнком, салатом и соусом</i></span><em>550 ₽</em></li>
+      </ul></section>
+      <section><h3>Тарелки к чаю</h3><ul>
+        <li><span><b>Фруктовая тарелка</b></span><em>1 300 ₽</em></li>
+        <li><span><b>Ореховая тарелка</b></span><em>1 500 ₽</em></li>
+        <li><span><b>Сырная тарелка</b></span><em>1 700 ₽</em></li>
+        <li><span><b>Микс из всех тарелок</b></span><em>2 700 ₽</em></li>
+      </ul></section>
+      <section><h3>Десерты</h3><ul>
+        <li><span><b>Тарталетки малиновые</b></span><em>680 ₽</em></li>
+        <li><span><b>Пирожное «Наполеон»</b></span><em>580 ₽</em></li>
+        <li><span><b>Корзинка с голубикой</b></span><em>790 ₽</em></li>
+      </ul></section>
+    </div>
+  </div>
+</section>
+
+<section class="section details" id="details">
+  <div class="details-grid">
+    <h2>Вкус раскрывается не спеша</h2>
+    <div class="detail-card"><span class="detail-icon">壹</span><h3>Чай и открытия</h3><p>Знакомьтесь с разными сортами, сравнивайте ароматы и находите вкусы, к которым захочется вернуться.</p></div>
+    <div class="detail-card"><span class="detail-icon">貳</span><h3>Посуда и атмосфера</h3><p>Чайные плитки и чайники также доступны в нашей чайной. Стоимость и наличие уточняйте у администратора.</p></div>
+    <div class="detail-card"><span class="detail-icon">參</span><h3>Кухня к чаю</h3><p>К церемонии можно заказать тарелки, десерты и горячие блюда из меню. Подскажем, что с чем сочетается.</p></div>
+  </div>
+</section>
+
+<section class="section booking" id="booking">
+  <div class="booking-layout">
+    <div class="booking-copy">
+      <h2>Оставьте суету за дверью</h2>
+      <p class="lead">Самый быстрый способ забронировать стол и церемонию — написать менеджеру в Telegram. Отвечаем в личных сообщениях.</p>
+
+      <a class="tg-card" href="{{ telegram_url }}" target="_blank" rel="noopener">
+        <span class="tg-badge">{{ tg() }}</span>
+        <span class="tg-text"><b>Напишите нам в Telegram</b><small>Свяжитесь с менеджером для брони</small></span>
+        <span class="tg-go" aria-hidden="true">↗</span>
+      </a>
+
+      <div class="contact-lines">
+        <p><b>Адрес</b> Санкт-Петербург, ул. Манчестерская 2, корпус 2</p>
+        <p><b>Часы</b> Ежедневно, 9:00–23:00</p>
+      </div>
+    </div>
+
+    <form class="booking-form" action="{{ url_for('booking') }}" method="post">
+      <h3>Или оставьте заявку на сайте</h3>
+      {% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}{% for category, message in messages %}<div class="flash {{ category }}" role="status">{{ message }}</div>{% endfor %}{% endif %}{% endwith %}
+      <div class="form-row"><label>Ваше имя<input name="name" required maxlength="100" placeholder="Как к вам обращаться"></label><label>Контакт для связи<input name="contact" required maxlength="150" placeholder="Телефон или Telegram"></label></div>
+      <label>Желаемая церемония
+        <select name="ceremony" id="ceremonySelect" required>
+          <option value="">Выберите из меню</option>
+          <optgroup label="Авторское меню">{% for n in base_ceremonies %}<option>{{ n }}</option>{% endfor %}</optgroup>
+          <optgroup label="Новые церемонии">{% for c in new_ceremonies %}<option>{{ c.title }}</option>{% endfor %}</optgroup>
+          <option>Другое — уточнить у мастера</option>
+        </select>
+      </label>
+      <div class="form-row"><label>Количество гостей<select name="guests" required><option value="">Гостей</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></label><label>Желаемая дата<input type="date" name="preferred_date" required></label></div>
+      <label>Комментарий<textarea name="comment" rows="3" maxlength="1000" placeholder="Пожелания, если есть"></textarea></label>
+      <button class="btn btn-gold submit" type="submit">Отправить заявку</button>
+      <small class="form-note">Заявка не подтверждает бронь: менеджер свяжется с вами отдельно.</small>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <a class="brand footer-brand" href="#top"><svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M24 5l4.5 15.5L24 24l-4.5-3.5z" fill="currentColor"/><path d="M24 43l-4.5-15.5L24 24l4.5 3.5z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg><span><b>Чайный компас</b><small>тишина, вкус, традиция</small></span></a>
+  <a class="btn btn-tg btn-sm" href="{{ telegram_url }}" target="_blank" rel="noopener">{{ tg() }} Telegram</a>
+  <a href="#top" class="to-top">Наверх ↑</a>
+</footer>
+
+<a class="fab-tg" href="{{ telegram_url }}" target="_blank" rel="noopener" aria-label="Написать менеджеру в Telegram">{{ tg() }}<span>Бронь в Telegram</span></a>
+
+<!-- Ceremony details -->
+<dialog class="cer-dialog" id="cerDialog" aria-labelledby="cerTitle">
+  <button class="dialog-close" aria-label="Закрыть">×</button>
+  <div class="dialog-grid">
+    <div class="dialog-art" id="cerArt"></div>
+    <div class="dialog-body">
+      <h3 id="cerTitle"></h3>
+      <p class="dialog-tag" id="cerTag"></p>
+      <div class="dialog-price"><b id="cerPrice"></b><span id="cerMeta"></span></div>
+      <h4>Что мы будем дегустировать</h4><ul class="tea-list" id="cerTeas"></ul>
+      <div class="dialog-cols"><div><h4>Что вы узнаете</h4><ul id="cerLearn"></ul></div><div><h4>Как пройдёт церемония</h4><ol id="cerFlow"></ol></div></div>
+      <blockquote id="cerQuote"></blockquote>
+      <div class="dialog-actions"><a class="btn btn-tg" href="{{ telegram_url }}" target="_blank" rel="noopener">{{ tg() }} Забронировать в Telegram</a><button class="btn btn-ghost" id="cerForm">Оставить заявку</button></div>
+    </div>
+  </div>
+</dialog>
+
+<!-- Menu viewer -->
+<div class="viewer" id="menuViewer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Просмотр меню">
+  <div class="viewer-top"><div><span class="viewer-kicker">Чайный компас</span><strong id="viewerTitle">Меню церемоний</strong></div><div class="viewer-count"><span id="pageCurrent">01</span> <i>/</i> {{ '%02d' % menu_pages|length }}</div><button class="viewer-close" aria-label="Закрыть меню">×</button></div>
+  <div class="viewer-stage"><button class="viewer-arrow prev" aria-label="Предыдущая страница">‹</button><div class="viewer-page"><img id="menuPage" src="{{ url_for('static', filename=menu_pages[0]) }}" alt="Страница 1 меню" draggable="false"></div><button class="viewer-arrow next" aria-label="Следующая страница">›</button></div>
+  <div class="viewer-bottom"><a class="btn btn-tg btn-sm" href="{{ telegram_url }}" target="_blank" rel="noopener">{{ tg() }} Забронировать</a><div class="page-dots" id="pageDots">{% for n in range(menu_pages|length) %}<button class="page-dot{% if n == 0 %} active{% endif %}" data-page="{{ n }}" aria-label="Страница {{ n + 1 }}"></button>{% endfor %}</div><span class="viewer-tip">← →</span></div>
+</div>
+
+<script id="cerData" type="application/json">{{ new_ceremonies | tojson }}</script>
+<script id="pagesData" type="application/json">{{ menu_pages | tojson }}</script>
+<script id="artData" type="application/json">{ {% for c in new_ceremonies %}"{{ c.id }}": {{ art(c.art) | tojson }}{{ "," if not loop.last }}{% endfor %} }</script>
+<script>window.STATIC_BASE = "{{ url_for('static', filename='') }}";</script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
